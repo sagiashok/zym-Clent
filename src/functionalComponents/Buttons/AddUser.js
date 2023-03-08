@@ -1,9 +1,26 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { pageContext } from "../Form";
 const AddUser = () => {
+  const { setPage, formData, setFormData } = useContext(pageContext);
+  const AddUser = () => {
+    setFormData([
+      ...formData,
+      {
+        userName: "",
+        userFatherName: "",
+        userEmailId: "",
+        userPhoneNumber: "",
+        userAge: "",
+        paidAmount: "",
+        userPackage: "",
+      },
+    ]);
+
+    setPage(0);
+  };
   return (
     <div>
-      <button>AddUser</button>
+      <button onClick={AddUser}>AddUser</button>
     </div>
   );
 };
