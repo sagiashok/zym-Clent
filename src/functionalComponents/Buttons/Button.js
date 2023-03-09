@@ -6,7 +6,7 @@ import { pageContext } from "../Form";
 import { useContext, useMemo, useEffect, useRef } from "react";
 
 const Buttons = () => {
-  const { page, setPage, formData, setFormData } = useContext(pageContext);
+  const { page,  formData } = useContext(pageContext);
 
   const formDataRef = useRef(formData);
 
