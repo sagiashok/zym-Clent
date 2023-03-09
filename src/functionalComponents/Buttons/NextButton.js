@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import { pageContext } from "../Form";
+import { ChildFormContext } from "../MultiForm/ChildForm";
 const NextButton = () => {
-  const { setPage } = useContext(pageContext);
+  const {page, setPage } = useContext(pageContext);
+  const {validationForm} = useContext(ChildFormContext)
   const PageIncreMent = () => {
-    setPage((pre) => pre + 1);
+    const isValid = validationForm(page === 0 ? "SignUp": page === 1 ? "PersonalInfo" : "OtherInfo")
+    if(isValid){
+      setPage((pre) => pre + 1);
+
+    }
   };
   return <button onClick={PageIncreMent}>Next</button>;
 };

@@ -10,7 +10,7 @@ const ChildForm = () => {
   const [errors, setErrors] = useState([]);
   const { page, formData, setFormData } = useContext(pageContext);
   const DisplayFormPage =
-    page === 0 ? <SignUp /> : page === 1 ? <PersonalInfo /> : <OtherInfo />;
+    page === 0 ? <SignUp  /> : page === 1 ? <PersonalInfo   /> : <OtherInfo  />;
   const lastUser = formData[formData.length - 1];
   const ValidSchema = ValidationSchema();
 
@@ -28,7 +28,7 @@ const ChildForm = () => {
   );
   // Form validation
   const validationForm = (pageInfo) => {
-    const errors = [];
+     const errors = []
     const SchemaKeys = Object.keys(ValidSchema[pageInfo]);
     SchemaKeys.forEach((key) => {
       const InputValue = lastUser[key];
@@ -54,21 +54,15 @@ const ChildForm = () => {
         errors.push(`${key} is missing`);
       }
     });
-    return errors;
+    setErrors(errors)
+    return errors.length === 0;
   };
   return (
     <div>
-      <ChildFormContext.Provider value={{ onChangeFormData, lastUser }}>
+      <ChildFormContext.Provider value={{ validationForm, onChangeFormData, lastUser }}>
         <>{DisplayFormPage}</>
       </ChildFormContext.Provider>
-      <button
-        onClick={() => {
-          const errr = validationForm("SignUp");
-          return errr;
-        }}
-      >
-        valid
-      </button>
+     
     </div>
   );
 };
