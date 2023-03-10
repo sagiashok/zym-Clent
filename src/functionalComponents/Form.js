@@ -27,24 +27,23 @@ const Form = () => {
       const InputValue = lastUser[key];
       if (InputValue !== undefined) {
         if (ValidSchema[pageInfo][key].required && !InputValue) {
-          errors.push(`${key} must not be empty`);
+          errors.push({[key] :`${key} must not be empty`});
         }
         if (
           ValidSchema[pageInfo][key].minLength &&
           InputValue.length < ValidSchema[pageInfo][key].minLength
         ) {
           errors.push(
-            `${key} must be at least ${ValidSchema[pageInfo][key].minLength} characters`
-          );
+          {[key]:`${key} must be at least ${ValidSchema[pageInfo][key].minLength} characters`});
         }
         if (
           ValidSchema[pageInfo][key].pattern &&
           !ValidSchema[pageInfo][key].pattern.test(InputValue)
         ) {
-          errors.push(`${key} is invalid`);
+          errors.push({[key]:`${key} is invalid`});
         }
       } else {
-        errors.push(`${key} is missing`);
+        errors.push({[key]:`${key} is missing`});
       }
     });
     setErrors(errors);

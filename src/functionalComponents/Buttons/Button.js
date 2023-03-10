@@ -7,21 +7,20 @@ import { useContext, useMemo, useEffect, useRef } from "react";
 
 const Buttons = () => {
   const { page,  formData } = useContext(pageContext);
-
+  //const isValid = validationForm(page === 0 ? "SignUp" :page === 1 ? "PersonalInfo":"OtherInfo")
   const formDataRef = useRef(formData);
 
   useEffect(() => {
     formDataRef.current = formData;
   }, [formData]);
   // form validation
-
   const Button = useMemo(() => {
     console.log(page);
 
     if (page === 0) {
       return (
         <div>
-          <NextButton />
+          { <NextButton/>}
         </div>
       );
     } else if (page === 1) {
@@ -33,7 +32,7 @@ const Buttons = () => {
           }}
         >
           {<BackButton />}
-          {<NextButton />}
+          {<NextButton/>}
         </div>
       );
     } else {
